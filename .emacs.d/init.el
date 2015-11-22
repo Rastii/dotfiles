@@ -11,34 +11,23 @@
 (defvar my-packages
   '(paredit
     clojure-mode
-    clojure-mode-extra-font-locking
-    cider
     js2-mode
     rainbow-delimiters
     rainbow-mode
-    haskell-mode
     magit
     evil
-    htmlize
     org
     web-mode
     key-chord
-    fiplr
     projectile
     helm
     helm-projectile
-    markdown-mode
     powerline
-    solarized-theme
-    leuven-theme
     sql-indent
     sqlup-mode
-    darkroom
     slime
     emmet-mode
-    load-theme-buffer-local
-    jabber
-    hackernews))
+    jabber))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -106,7 +95,6 @@
 ;; Evil
 (require 'evil)
 ;; Enable evil, but only for prog or text buffers
-;; (add-hook 'prog-mode-hook 'evil-local-mode)
 (mapcar (lambda (hook)
           (add-hook hook 'evil-local-mode)
           (add-hook hook 'linum-mode))
@@ -151,15 +139,11 @@
 (setq inhibit-splash-screen t)
 (linum-mode)
 
-(set-default-font "SourceCodePro-9")
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(menu-bar-mode -1)
-(load-theme 'zenburn t)
-(add-hook 'text-mode-hook
-          (lambda ()
-            (darkroom-tentative-mode)
-            (visual-line-mode)))
+;; (load-theme 'zenburn t)
+(add-hook 'text-mode-hook 'visual-line-mode)
+
 (setq redisplay-dont-pause t
       scroll-margin 1
       scroll-step 1
@@ -189,8 +173,6 @@
 (add-hook 'handlebars-mode-hook 'emmet-mode)
 (setq emmet-move-cursor-between-quotes t)
 
-(require 'haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; Markdown
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
@@ -248,7 +230,6 @@
 
 (projectile-global-mode)
 (setq projectile-enable-caching t)
-(global-set-key (kbd "C-x f") 'fiplr-find-file)
 
 ;; C-; to comment one line
 (defun toggle-comment-on-line ()
@@ -293,7 +274,7 @@ directory to make multiple eshell windows easier."
 (setq browse-url-text-browser "w3m")
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-(load "~/.emacs.d/jabber.el")
+;; (load "~/.emacs.d/jabber.el")
 
 ;; A saner backup policy
 (setq
