@@ -17,8 +17,8 @@ Xcursor.theme: neutral
 !URxvt*boldFont:         xft:DejaVu Sans Mono:bold:size=8
 !URxvt*font:              xft:Monaco:size=8
 
-URxvt*font:              xft:Ubuntu Mono:size=10
-URxvt*boldFont:          xft:Ubuntu Mono:bold:size=10
+!URxvt*font:              xft:Ubuntu Mono:size=10
+!URxvt*boldFont:          xft:Ubuntu Mono:bold:size=10
 
 URxvt*saveLines:        32767
 URxvt*scrollBar:        false
