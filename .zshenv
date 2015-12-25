@@ -23,6 +23,9 @@ export EMAIL="guilhermeaugustosg@gmail.com"
 export NAME="Guilherme Gonçalves"
 export SMTPSERVER="smtp.gmail.com"
 
+# Schemas required for building website-user
+export LL_DB_SCHEMAS_DIR=$HOME/lastline/db-schemas
+
 if [ "$TERM" = "linux" ]; then
   echo -en "\e]P0000000" #black
   echo -en "\e]P8505354" #darkgrey

@@ -1,3 +1,4 @@
+escape ^Qq
 defscrollback 10000
 deflogin on
 altscreen on
@@ -13,11 +14,12 @@ term screen-256color
 termcapinfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
-screen -t zsh # fish
-screen -t zsh # fish
-screen -t php phpsh
-screen -t db psql cap
-screen -t log multitail -CS apache_error /tmp/error_log_cap.local
+screen -t precise64 schroot -a
+screen -t zsh
+screen -t zsh
+screen -t manager ssh -p 3022 lastline@127.0.0.1
+# screen -t db psql cap
+# screen -t log multitail -CS apache_error /tmp/error_log_cap.local
 
 bindkey -k k1 prev
 bindkey -k k2 next
@@ -25,8 +27,7 @@ bindkey -k k2 next
 bindkey "^[Od" prev
 bindkey "^[Oc" next
 
-backtick 1 10 60 batstatus
-caption always "%{= kb}[ %{kG}$USER%{kW} :: %{kG}%H %{b}][ %=%{kW}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][ %{W} %1` %{G}%Y-%m-%d %{W}%c %{b} ]"
+caption always "%{= kb}[ %{kG}$USER%{kW} :: %{kG}%H %{b}][ %=%{kW}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%= %{b}][ %{W} %{G}%Y-%m-%d %{W}%c %{b} ]"
 sorendition +b kG
 
-select 0
+select 1

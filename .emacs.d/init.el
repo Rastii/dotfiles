@@ -259,10 +259,6 @@
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (define-key lisp-mode-map (kbd "C-S-r") 'slime)
 
-;; SLIME stuff
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl –dynamic-space-size 2560")
-
 ;; cc-mode
 (setq-default c-default-style "k&r"
               c-basic-offset 4)
@@ -308,7 +304,6 @@ directory to make multiple eshell windows easier."
 (setq browse-url-text-browser "w3m")
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-(load "~/.emacs.d/jabber.el")
 
 ;; Ugly, but necessary: filter ANSI escape sequences for a nicer npm experience
 (defvar my-ansi-escape-re
