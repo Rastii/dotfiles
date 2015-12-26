@@ -103,13 +103,6 @@
 ;; GO TO in web browser
 (define-key global-map (kbd "C-M-g") 'eww)
 
-(defun back-to-indentation-or-beginning ()
-  "Move point to beginning of line, or to first non-space character"
-  (interactive)
-  (if (= (point) (progn (back-to-indentation) (point)))
-      (beginning-of-line)))
-(global-set-key (kbd "C-a") 'back-to-indentation-or-beginning)
-
 ;; Evil
 (require 'evil)
 ;; Enable evil, but only for prog or text buffers
@@ -118,6 +111,14 @@
           (add-hook hook 'evil-local-mode)
           (add-hook hook 'linum-mode))
         '(prog-mode-hook text-mode-hook))
+
+;;; Undo some default Evil bindings for a more Emacs-y experience
+(defun back-to-indentation-or-beginning ()
+  "Move point to beginning of line, or to first non-space character"
+  (interactive)
+  (if (= (point) (progn (back-to-indentation) (point)))
+      (beginning-of-line)))
+(global-set-key (kbd "C-a") 'back-to-indentation-or-beginning)
 
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
