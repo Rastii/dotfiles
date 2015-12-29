@@ -3,7 +3,8 @@
 . ~/.zsh/alias
 . ~/.zsh/function
 . ~/.zsh/autotime
-PURE_PROMPT_SYMBOL="➜" . ~/.zsh/pure.zsh
+. ~/.zsh/prompt.small
+# PURE_PROMPT_SYMBOL="➜" . ~/.zsh/pure.zsh
 # . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . /home/guilherme/build/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
