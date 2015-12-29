@@ -34,14 +34,17 @@ alias clearrbc='rm -f */**/*.rbc'
 alias dirsizes='du -h -d 1'
 
 alias vim='emacsclient -a "" -t'
-alias appini='meld $(find . -name "application.ini") $(find . -name "application.ini.dist")'
-alias acl='php $(find . -name acl_deploy.php)'
 alias svndiff='svn diff $* | colordiff | lv -c'
 alias vgaon='xrandr --output VGA1 --auto --right-of LVDS1'
 alias vgaoff='xrandr --output VGA1 --off'
 alias ctl='sudo systemctl'
 alias halt='sudo poweroff'
 alias reboot='sudo reboot'
+
+alias vpnup='sudo systemctl start openvpn@client'
+alias vpndown='sudo systemctl stop openvpn@client'
+alias managerup='VBoxHeadless -s "Lastline Manager" &> ~/.vbox_ll_logs &'
+alias manager_connect='ssh -p 3022 lastline@127.0.0.1'
 
 # Global aliases
 alias -g L='| pygmentize -g | less -r'
@@ -55,4 +58,3 @@ alias -g N='&>/dev/null'
 alias -g V='| vim -'
 
 TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-
