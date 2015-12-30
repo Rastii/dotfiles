@@ -306,24 +306,6 @@ directory to make multiple eshell windows easier."
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Ugly, but necessary: filter ANSI escape sequences for a nicer npm experience
-(defvar my-ansi-escape-re
-  (rx (or ?\233 (and ?\e ?\[))
-      (zero-or-more (char (?0 . ?\?)))
-      (zero-or-more (char ?\s ?- ?\/))
-      (char (?@ . ?~))))
-
-(defun my-nuke-ansi-escapes (beg end)
-  (save-excursion
-    (goto-char beg)
-    (while (re-search-forward my-ansi-escape-re end t)
-      (replace-match ""))))
-
-(defun my-eshell-nuke-ansi-escapes ()
-  (my-nuke-ansi-escapes eshell-last-output-start eshell-last-output-end))
-
-(add-hook 'eshell-output-filter-functions 'my-eshell-nuke-ansi-escapes t)
-
 ;; Mail
 (require 'gnus)
 (setq mm-verify-option 'always)
