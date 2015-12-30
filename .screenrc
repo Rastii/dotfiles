@@ -17,7 +17,7 @@ termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 screen -t docker docker exec -it websiteuserdocker_web_1 bash
 screen -t zsh zsh
 screen -t zsh zsh
-screen -t manager ssh -p 3022 lastline@127.0.0.1
+screen -t manager ssh root@192.168.100.129
 # screen -t log multitail -CS apache_error /tmp/error_log_cap.local
 
 bindkey -k k1 prev
