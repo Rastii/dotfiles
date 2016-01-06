@@ -302,6 +302,13 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "C-!") 'eshell-here)
 (global-set-key [f1] 'eshell)
 
+(require 'ssh)
+(add-hook 'ssh-mode-hook
+          (lambda ()
+            (setq ssh-directory-tracking-mode t)
+            (shell-dirtrack-mode t)
+            (setq dirtrackp nil)))
+
 (setq browse-url-text-browser "w3m")
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
