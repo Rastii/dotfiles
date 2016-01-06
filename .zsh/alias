@@ -44,7 +44,8 @@ alias reboot='sudo reboot'
 alias vpnup='sudo systemctl start openvpn@client'
 alias vpndown='sudo systemctl stop openvpn@client'
 alias managerup='VBoxHeadless -s "Lastline Manager" &> ~/.vbox_ll_logs &'
-alias manager_connect='ssh -p 3022 lastline@127.0.0.1'
+alias manager_connect='ssh root@manager'
+alias devmount='sshfs -o allow_other,uid=$(id -u),gid=$(id -g) root@manager:/var/www/dev_website_user'
 
 # Global aliases
 alias -g L='| pygmentize -g | less -r'
