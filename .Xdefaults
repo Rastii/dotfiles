@@ -13,9 +13,9 @@ Xcursor.theme: neutral
 ! URxvt*italicFont:       -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
 ! URxvt*boldItalicFont:   -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
 
-URxvt*font:             xft:DejaVu Sans Mono:size=8
-URxvt*boldFont:         xft:DejaVu Sans Mono:bold:size=8
-!URxvt*font:              xft:Monaco:size=8
+!URxvt*font:             xft:DejaVu Sans Mono:size=8
+!URxvt*boldFont:         xft:DejaVu Sans Mono:bold:size=8
+URxvt*font:              xft:Monaco:size=8
 
 !URxvt*font:              xft:Ubuntu Mono:size=10
 !URxvt*boldFont:          xft:Ubuntu Mono:bold:size=10
