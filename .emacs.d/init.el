@@ -3,28 +3,23 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 (defvar my-packages
   '(paredit
-    clojure-mode
-    clojure-mode-extra-font-locking
-    cider
     js2-mode
     js-comint
     rainbow-delimiters
     rainbow-mode
-    haskell-mode
     magit
     evil
     htmlize
     org
     web-mode
     key-chord
-    fiplr
     projectile
     helm
     helm-projectile
@@ -36,9 +31,8 @@
     sqlup-mode
     slime
     emmet-mode
-    load-theme-buffer-local
-    jabber
-    hackernews))
+    ssh
+    jabber))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -112,7 +106,6 @@
           (add-hook hook 'linum-mode))
         '(prog-mode-hook text-mode-hook))
 
-;;; Undo some default Evil bindings for a more Emacs-y experience
 (defun back-to-indentation-or-beginning ()
   "Move point to beginning of line, or to first non-space character"
   (interactive)
@@ -120,6 +113,8 @@
       (beginning-of-line)))
 (global-set-key (kbd "C-a") 'back-to-indentation-or-beginning)
 
+;;; Undo some default Evil bindings for a more Emacs-y experience
+(define-key evil-insert-state-map (kbd "C-a") 'back-to-indentation-or-beginning)
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
 (define-key evil-insert-state-map (kbd "C-d") 'delete-char)
@@ -155,7 +150,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 (add-hook 'text-mode-hook
           (lambda ()
             (visual-line-mode)))
@@ -186,6 +181,8 @@
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 (setq js2-global-externs '("$" "_" "d3" "angular"))
 
 ;; Node REPL
@@ -203,16 +200,19 @@
 (defun my-web-mode-hook ()
   (linum-mode)
   (emmet-mode)
-  (evil-local-mode))
+  (evil-local-mode)
+  ;; Config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
 
-(add-hook 'html-mode-hook 'my-web-mode-hook)
-(add-hook 'sgml-mode-hook 'my-web-mode-hook)
-(add-hook 'css-mode-hook 'my-web-mode-hook)
+;; (add-hook 'html-mode-hook 'my-web-mode-hook)
+;; (add-hook 'sgml-mode-hook 'my-web-mode-hook)
+;; (add-hook 'css-mode-hook 'my-web-mode-hook)
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 (add-hook 'handlebars-mode-hook 'my-web-mode-hook)
 (setq emmet-move-cursor-between-quotes t)
 
-(require 'haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; Markdown
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
@@ -266,7 +266,7 @@
 
 (projectile-global-mode)
 (setq projectile-enable-caching t)
-(global-set-key (kbd "C-x f") 'fiplr-find-file)
+(define-key global-map (kbd "C-c p p") 'helm-projectile-switch-project)
 
 ;; C-; to comment one line
 (defun toggle-comment-on-line ()
@@ -319,10 +319,14 @@ directory to make multiple eshell windows easier."
 
 
 ;; A saner backup policy
+(defvar backup-directory (concat user-emacs-directory "backup"))
+(if (not (file-exists-p backup-directory))
+    (make-directory backup-directory))
+
 (setq
  backup-by-copying t
- backup-directory-alist
- '(("." . "~/.emacs.d/backup"))
+ backup-directory-alist `((".*" . ,backup-directory))
+ auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2

@@ -18,7 +18,7 @@ screen -t docker docker exec -it website-user bash
 screen -t zsh zsh
 screen -t zsh zsh
 screen -t manager ssh root@manager
-screen -t watch zsh -c "cd ~/lastline/website-user && ./watch.sh"
+screen -t watch zsh -c 'cd ~/lastline/website-user ; ./watch.sh'
 screen -t grunt-watch docker exec -it website-user grunt watch
 # screen -t logs multitail -CS apache_error /var/log/apache2/error.log
 

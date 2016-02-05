@@ -4,7 +4,7 @@
 
 alias mv='mv -v'
 alias mmv='noglob zmv -W'
-alias rm='rm -iv'
+alias rm='rm -v'
 alias cp='cp -v'
 alias wget='wget --timeout 10'
 alias grep='grep --color=auto'
@@ -13,25 +13,6 @@ alias ll='ls -ahl | more; echo "\e[1;32m --[\e[1;34m Dirs:\e[1;36m `ls -al | egr
 alias cdc='cd; clear'
 alias ls='ls -GF'
 alias ccat='pygmentize -g'
-
-# auto open images
-alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='open -a Preview'
-# auto open movies
-alias -s {mpg,mpeg,avi,ogm,wmv,m4v,mp4,mov}='open -a MPlayer\ OSX\ Extended'
-# auto open audio
-alias -s {mp3,ogg,wav,flac}='open -a Winamp'
-# auto open web addresses
-alias -s {html,php,com,net,org,gov}='open -a Chromium'
-# auto open regular files
-alias -s txt='vim'
-alias -s pdf='open -a Preview'
-
-alias mplayer='mplayer -idx'
-alias wcat='wget -q -O -'
-alias cmake='cmake -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONFDIR=/etc'
-alias run='open -a'
-alias clearrbc='rm -f */**/*.rbc'
-alias dirsizes='du -h -d 1'
 
 alias vim='emacsclient -a "" -t'
 alias svndiff='svn diff $* | colordiff | lv -c'
@@ -45,6 +26,7 @@ alias vpnup='sudo systemctl start openvpn@client'
 alias vpndown='sudo systemctl stop openvpn@client'
 alias managerup='VBoxHeadless -s "Lastline Manager" &> ~/.vbox_ll_logs &'
 alias manager_connect='ssh root@manager'
+alias devwatch='docker exec -it website-user grunt watch'
 alias devmount='sshfs -o allow_other,uid=$(id -u),gid=$(id -g) root@manager:/var/www/dev_website_user'
 
 # Global aliases
