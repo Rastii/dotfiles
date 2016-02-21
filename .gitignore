@@ -6,3 +6,6 @@
 /.emacs.d/.org-id-locations
 
 /.emacs.d/eshell/
+/.emacs.d/projectile-bookmarks.eld
+/.emacs.d/recentf
+/.emacs.d/tramp
