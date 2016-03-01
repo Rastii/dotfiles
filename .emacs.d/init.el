@@ -32,6 +32,7 @@
     slime
     emmet-mode
     ssh
+    multiple-cursors
     jabber))
 
 (dolist (p my-packages)
@@ -160,6 +161,14 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this-word)
+(global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
+
+(global-unset-key (kbd "C-<down-mouse-1>"))
+(global-set-key (kbd "C-<mouse-1>") 'mc/add-cursor-on-click)
+
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
 (global-whitespace-mode t)
@@ -183,7 +192,8 @@
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-(setq js2-global-externs '("$" "_" "d3" "angular"))
+(setq js2-global-externs '("$" "_" "d3" "angular" "nv" "isUndefined"
+                           "window" "colorbrewer"))
 
 ;; Node REPL
 (setq inferior-js-program-command "/usr/bin/node")
